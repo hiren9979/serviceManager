@@ -1,0 +1,24 @@
+USE serviceManager;
+CREATE TABLE category (
+    id VARCHAR(100) NOT NULL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE priceOptions (
+    id VARCHAR(100) NOT NULL PRIMARY KEY,
+    serviceId VARCHAR(100) NOT NULL,
+    duration VARCHAR(255) NOT NULL,
+    price DOUBLE NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    FOREIGN KEY (serviceId) REFERENCES service(id)
+);
+
+
+CREATE TABLE service (
+    id VARCHAR(100) NOT NULL PRIMARY KEY,
+    categoryId VARCHAR(100) NOT NULL,
+    serviceName VARCHAR(255) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    priceOptionId VARCHAR(100) NOT NULL,
+    FOREIGN KEY (categoryId) REFERENCES category(id)
+);
